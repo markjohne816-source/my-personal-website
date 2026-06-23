@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Lobby - Welcome</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2a0505 0%, #5a1a1a 50%, #3d0a0a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .lobby {
+      text-align: center;
+      background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+      padding: 50px 40px;
+      border-radius: 16px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(90, 26, 26, 0.2);
+      max-width: 400px;
+      width: 100%;
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #5a1a1a;
+      font-size: 2em;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: #8b4545;
+      font-size: 0.95em;
+      margin-bottom: 35px;
+      font-weight: 500;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-container .btn:last-child {
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #8b2e2e 0%, #a73a3a 100%);
+      border: 2px solid transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #a73a3a 0%, #c94545 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 46, 46, 0.35);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn:focus {
+      outline: none;
+      border-color: #5a1a1a;
+    }
+
+    .btn-icon {
+      font-size: 1.1em;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn:disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    @media (max-width: 480px) {
+      .lobby {
+        padding: 35px 25px;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
+
+      .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+    }
+
+    /* Accessibility */
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn:disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="lobby">
+    <h1>Welcome To My Website</h1>
+    <p class="subtitle">Choose an option below</p>
+    
+    <div class="btn-container">
+      <button class="btn" onclick="navigateTo('mypersonalwebpage.html')">
+        <span class="btn-icon"></span>
+        My Personal Web Page
+      </button>
+      
+      <button class="btn" onclick="navigateTo('mystory.html')">
+        <span class="btn-icon"></span>
+        My Story
+      </button>
+
+      <button class="btn" onclick="navigateTo('Motivational.html')">
+        <span class="btn-icon"></span>
+        Motivational Video
+      </button>
+      
+      <button class="btn" onclick="navigateTo('Memories.html')">
+        <span class="btn-icon"></span>
+        Memories
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        navigateTo('index.html');
+      }
+    });
+  </script>
+</body>
+</html>

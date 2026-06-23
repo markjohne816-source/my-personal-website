@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Memories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2a0505 0%, #5a1a1a 50%, #3d0a0a 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-btn {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #8b2e2e 0%, #a73a3a 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #a73a3a 0%, #c94545 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 46, 46, 0.35);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 3px solid transparent;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 12px 24px rgba(90, 26, 26, 0.4);
+      border-color: #8b2e2e;
+    }
+
+    .gallery img:active {
+      transform: scale(0.98);
+    }
+
+    /* Lightbox Styles */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeInOverlay 0.3s ease-out;
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    @keyframes fadeInOverlay {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    #lightbox-img {
+      max-width: 90%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      animation: zoomIn 0.4s ease-out;
+      box-shadow: 0 0 50px rgba(139, 46, 46, 0.5);
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.3);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Navigation Controls */
+    .lightbox-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 1001;
+    }
+
+    .control-btn {
+      width: 45px;
+      height: 45px;
+      background: rgba(139, 46, 46, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn:hover {
+      background: rgba(139, 46, 46, 1);
+      transform: scale(1.1);
+    }
+
+    /* Image Counter */
+    .image-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(139, 46, 46, 0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      z-index: 1001;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 2em;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+      }
+
+      .gallery img {
+        height: 200px;
+      }
+
+      #lightbox-img {
+        max-width: 95%;
+        max-height: 85vh;
+      }
+
+      .lightbox-controls {
+        top: 10px;
+        right: 10px;
+      }
+
+      .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+      }
+
+      .gallery img {
+        height: 150px;
+      }
+
+      .header {
+        flex-direction: column;
+      }
+
+      .back-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    
+    .keyboard-hint {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 30px;
+      padding: 15px;
+      background: rgba(90, 26, 26, 0.2);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2> My Memories</h2>
+      <a href="main.html" class="back-btn">← Back to Lobby</a>
+    </div>
+    
+
+    <div class="gallery">
+      <img src="memories/pic (1).jpg" alt="Memory 1" onclick="openImage(this)">
+      <img src="memories/pic (2).jpg" alt="Memory 2" onclick="openImage(this)">
+      <img src="memories/pic (3).jpg" alt="Memory 3" onclick="openImage(this)">
+      <img src="memories/pic (4).jpg" alt="Memory 4" onclick="openImage(this)">
+      <img src="memories/pic (5).jpg" alt="Memory 5" onclick="openImage(this)">
+      <img src="memories/pic (6).jpg" alt="Memory 6" onclick="openImage(this)">
+      <img src="memories/pic (7).jpg" alt="Memory 7" onclick="openImage(this)">
+      <img src="memories/pic (8).jpg" alt="Memory 8" onclick="openImage(this)">
+      <img src="memories/pic (9).jpg" alt="Memory 9" onclick="openImage(this)">
+      <img src="memories/pic (10).jpg" alt="Memory 10" onclick="openImage(this)">
+      <img src="memories/pic (11).jpg" alt="Memory 11" onclick="openImage(this)">
+      <img src="memories/pic (12).jpg" alt="Memory 12" onclick="openImage(this)">
+      <img src="memories/pic (13).jpg" alt="Memory 13" onclick="openImage(this)">
+      <img src="memories/pic (14).jpg" alt="Memory 14" onclick="openImage(this)">
+      <img src="memories/pic (15).jpg" alt="Memory 15" onclick="openImage(this)">
+      <img src="memories/pic (16).jpg" alt="Memory 16" onclick="openImage(this)">
+      <img src="memories/pic (17).jpg" alt="Memory 17" onclick="openImage(this)">
+      <img src="memories/pic (18).jpg" alt="Memory 18" onclick="openImage(this)">
+      <img src="memories/pic (19).jpg" alt="Memory 19" onclick="openImage(this)">
+      <img src="memories/pic (20).jpg" alt="Memory 20" onclick="openImage(this)">
+      <img src="memories/pic (21).jpg" alt="Memory 21" onclick="openImage(this)">
+      <img src="memories/pic (23).jpg" alt="Memory 23" onclick="openImage(this)">
+      <img src="memories/pic (24).jpg" alt="Memory 24" onclick="openImage(this)">
+      <img src="memories/pic (25).jpg" alt="Memory 25" onclick="openImage(this)">
+      <img src="memories/pic (26).jpg" alt="Memory 26" onclick="openImage(this)">
+      <img src="memories/pic (27).jpg" alt="Memory 27" onclick="openImage(this)">
+      <img src="memories/pic (28).jpg" alt="Memory 28" onclick="openImage(this)">
+      <img src="memories/pic (29).jpg" alt="Memory 29" onclick="openImage(this)">
+      <img src="memories/pic (30).jpg" alt="Memory 30" onclick="openImage(this)">
+      <img src="memories/pic (31).jpg" alt="Memory 31" onclick="openImage(this)">
+      <img src="memories/pic (32).jpg" alt="Memory 32" onclick="openImage(this)">
+      <img src="memories/pic (33).jpg" alt="Memory 33" onclick="openImage(this)">
+      <img src="memories/pic (34).jpg" alt="Memory 34" onclick="openImage(this)">
+      <img src="memories/pic (35).jpg" alt="Memory 35" onclick="openImage(this)">
+      <img src="memories/pic (36).jpg" alt="Memory 36" onclick="openImage(this)">
+      <img src="memories/pic (37).jpg" alt="Memory 37" onclick="openImage(this)">
+      <img src="memories/pic (38).jpg" alt="Memory 38" onclick="openImage(this)">
+      <img src="memories/pic (39).jpg" alt="Memory 39" onclick="openImage(this)">
+      <img src="memories/pic (40).jpg" alt="Memory 40" onclick="openImage(this)">
+      <img src="memories/pic (41).jpg" alt="Memory 41" onclick="openImage(this)">
+      <img src="memories/pic (42).jpg" alt="Memory 42" onclick="openImage(this)">
+      <img src="memories/pic (43).jpg" alt="Memory 43" onclick="openImage(this)">
+      <img src="memories/pic (44).jpg" alt="Memory 44" onclick="openImage(this)">
+      <img src="memories/pic (45).jpg" alt="Memory 45" onclick="openImage(this)">
+      <img src="memories/pic (46).jpg" alt="Memory 46" onclick="openImage(this)">
+    </div>
+
+    <div class="keyboard-hint">
+       Tip: Press ESC or click outside to close • Use arrow keys to navigate between photos
+    </div>
+  </div>
+
+  
+  <div id="lightbox" onclick="closeImage(event)">
+    <div class="lightbox-controls">
+      <button class="control-btn" onclick="previousImage(event)" title="Previous (←)">❮</button>
+      <button class="control-btn" onclick="closeImage(event)" title="Close (ESC)">✕</button>
+      <button class="control-btn" onclick="nextImage(event)" title="Next (→)">❯</button>
+    </div>
+    <img id="lightbox-img" alt="Fullscreen view">
+    <div class="image-counter">
+      <span id="current-image">1</span> / <span id="total-images">46</span>
+    </div>
+  </div>
+
+  <script>
+    let allImages = [];
+    let currentImageIndex = 0;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      allImages = Array.from(document.querySelectorAll('.gallery img'));
+      document.getElementById('total-images').textContent = allImages.length;
+    });
+
+    function openImage(imgElement) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      currentImageIndex = allImages.indexOf(imgElement);
+      lightboxImg.src = imgElement.src;
+      lightboxImg.alt = imgElement.alt;
+      
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      updateImageCounter();
+    }
+
+    function closeImage(event) {
+      
+      if (event && event.target.id !== 'lightbox') return;
+      
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function nextImage(event) {
+      event.stopPropagation();
+      currentImageIndex = (currentImageIndex + 1) % allImages.length;
+      updateLightboxImage();
+    }
+
+    function previousImage(event) {
+      event.stopPropagation();
+      currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+      updateLightboxImage();
+    }
+
+    function updateLightboxImage() {
+      const lightboxImg = document.getElementById('lightbox-img');
+      const currentImg = allImages[currentImageIndex];
+      lightboxImg.src = currentImg.src;
+      lightboxImg.alt = currentImg.alt;
+      updateImageCounter();
+    }
+
+    function updateImageCounter() {
+      document.getElementById('current-image').textContent = currentImageIndex + 1;
+    }
+
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+
+    
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('lightbox');
+      
+      if (!lightbox.classList.contains('active')) return;
+
+      switch(event.key) {
+        case 'Escape':
+          closeImage({ target: lightbox });
+          break;
+        case 'ArrowRight':
+          nextImage(event);
+          break;
+        case 'ArrowLeft':
+          previousImage(event);
+          break;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #f0f0f0;
+            background: #5a1414;
+            border-top: 4px solid #1a0606;
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 50px 60px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #800000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #a52a2a;
+        }
+        
+        h1 {
+            color: #fdf3c4;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.6em;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(253, 243, 196, 0.25);
+            padding-bottom: 25px;
+        }
+        
+        h2 {
+            color: #fdf3c4;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(253, 243, 196, 0.25);
+            padding-bottom: 12px;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            text-align: left;
+            font-size: 1.05em;
+            color: #f0f0f0;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        
+        a {
+            color: #fdf3c4;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #ffffff;
+        }
+        
+        hr {
+            margin: 35px 0;
+            border: none;
+            height: 1px;
+            background: rgba(253, 243, 196, 0.25);
+        }
+        
+        b {
+            color: #ffffff;
+            font-weight: 700;
+        }
+        
+        i {
+            color: #f0f0f0;
+            font-style: italic;
+        }
+        
+        u {
+            text-decoration: underline;
+            text-decoration-color: rgba(253, 243, 196, 0.6);
+            text-decoration-thickness: 1px;
+        }
+        
+        .center-text {
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        nav {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+            text-align: center;
+        }
+        
+        nav a {
+            margin-right: 20px;
+            display: inline-block;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            border: none;
+            text-decoration: none;
+            color: #fdf3c4;
+        }
+        
+        nav a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        
+        .fun-facts {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 3px solid rgba(253, 243, 196, 0.4);
+        }
+        
+        .contact-info {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 3px solid rgba(253, 243, 196, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <a href="main.html" class="back-btn">← Back to Lobby</a>
+
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="#favorite">Favorite</a>
+            <a href="#facts">Fun Facts</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="height: 30px;"></div>
+
+        <h1>My Personal Profile</h1>
+        <p class="center-text"><i>Welcome to my online portfolio and personal introduction</i></p>
+        
+        <hr>
+
+        
+        <img src="photo/Mark.jpg" alt="My Photo" width="200">
+        
+        <h2 id="about">About Me</h2>
+        <p>
+            Hello! My name is <b>Mark John Espinosa</b>. I am a passionate <u>student</u> who loves <i>technology</i> and continuous learning. 
+            With an interest in web development and software engineering, I strive to create meaningful digital experiences 
+            that make a difference. I believe in the power of innovation and collaboration to solve real-world problems.
+        </p>
+        <p>
+            Currently, I am improving my skills in web development, learning both frontend and backend technologies. 
+            My goal is to become a <b>full-stack developer</b> and contribute to exciting projects that push the boundaries of what's possible on the web.
+        </p>
+
+        <hr>
+
+        
+        <h2 id="hobbies">My Hobbies</h2>
+        <p>In my free time, I enjoy engaging in various activities:</p>
+        <ul>
+            <li>Playing Mobile Games - Strategy and puzzle games are my favorites</li>
+            <li>Watching Anime - I love romance and slice-of-life genres</li>
+            <li>Listening to Music - Pop and old music help me stay motivated</li>
+            <li>Coding Side Projects - Building small applications to enhance my skills</li>
+        </ul>
+
+        <hr>
+
+        
+        <h2 id="favorite">My Favorite Websites</h2>
+        <p>Here are some websites that inspire and help me learn:</p>
+        <ol>
+            <li><a href="https://www.youtube.com" target="_blank">Visit YouTube</a> - For tutorial videos and educational content</li>
+        </ol>
+
+        <hr>
+
+        
+        <h2 id="facts">Fun Facts About Me</h2>
+        <div class="fun-facts">
+            <p>
+                <b>Favorite Color:</b> <u>Blue</u> - It represents trust and technology to me<br>
+                <b>Favorite Food:</b> <i>Burger</i> - Can eat it anytime, anywhere<br>
+                <b>Dream Job:</b> <u>Software Developer</u> - Creating innovative applications<br>
+                <b>Programming Languages:</b> <i>HTML, CSS, JavaScript, Python</i>
+            </p>
+            <p style="margin-top: 15px;">
+                <b>Fun Fact:</b> I can <u>code</u> for hours without getting tired because I absolutely <i>love</i> what I do!
+            </p>
+        </div>
+
+        <hr>
+
+        <p style="margin-top: 20px;">
+            <b>Where I'm From:</b> 
+            <a href="https://maps.app.goo.gl/BVpyiKGCJahmWP788" target="_blank">
+                View my location on Google Maps
+            </a>
+        </p>
+
+        <hr>
+
+        
+        <h2 id="contact">Contact Information</h2>
+        <div class="contact-info">
+            <p><b>Email:</b> <a href="mailto:markjohne816@gmail.com" target="_blank">markjohne816@gmail.com</a></p>
+            <p><b>Phone:</b> <u>09973247659</u></p>
+            <p><b>Location:</b> <i>Sto.nino,kalye putol</i></p>
+            <p>
+                <b>Connect with me:</b><br> 
+                <a href="https://www.instagram.com/markjohn__e?igsh=cXIxbmZ0NmIxdGdq" target="_blank">Instagram</a> | 
+                <a href="https://www.facebook.com/share/18UCpoQAhA/" target="_blank">Facebook</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Video</title>
+    <style>
+        body {
+            background-color: #800000; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+            margin: 0;
+        }
+        video {
+            border: 5px solid #fff; 
+            border-radius: 10px;    
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            background: #a73a3a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #8b2e2e;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <a href="main.html" class="back-btn">← Back to Lobby</a>
+    <video src="video/Motivational.mp4" width="850" height="650" controls autoplay></video>
+</body>
+</html>
